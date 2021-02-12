@@ -1,0 +1,14 @@
+---
+- name: Include package requirement tasks
+  include_tasks: 'mounts-requirements.yml'
+  tags: mounts-requirements
+
+- name: Include device mounts
+  include_tasks: 'mounts-ext4.yml'
+  loop: '{{ ext4_mounts }}'
+  tags: mounts-ext4
+
+- name: Include bind mounts
+  include_tasks: 'mounts-bind.yml'
+  loop: '{{ bind_mounts }}'
+  tags: mounts-bind

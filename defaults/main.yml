@@ -1,0 +1,17 @@
+---
+# Ext4 volume mounts
+# ~~~~~~~~~~~~~~~~~~
+#
+# ext4_mounts:
+# - device: '/dev/vdb'
+#   mountpoint: '/mnt/data'
+ext4_mounts: []
+
+# Bind mounts
+# ~~~~~~~~~~~
+#
+# bind_mounts:
+# - dir: '/mnt/dir'
+#   mountpoint: '/mnt/mirror'
+#   user: 'cloud-user'
+bind_mounts: []

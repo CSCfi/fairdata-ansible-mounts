@@ -1,0 +1,17 @@
+---
+- name: Ensure ext4 mountpoint exists
+  file:
+    path: '{{ item.mountpoint }}'
+    state: 'directory'
+  become: yes
+  tags: mounts-ext4
+
+- name: Ensure ext4 volumes are mounted
+  mount:
+    path: '{{ item.mountpoint }}'
+    src: '{{ item.device }}'
+    fstype: ext4
+    opts: auto
+    state: mounted
+  become: yes
+  tags: mounts-ext4

@@ -1,0 +1,7 @@
+---
+- name: Ensure Bindfs is installed
+  yum:
+    name: 'bindfs'
+    state: 'latest'
+  become: yes
+  tags: mounts-requirements

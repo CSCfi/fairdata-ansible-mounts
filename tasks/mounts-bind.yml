@@ -1,0 +1,26 @@
+---
+- name: Check if fstab record exists
+  mount:
+    path: '{{ item.mountpoint }}'
+    src: '{{ item.dir }}'
+    fstype: 'fuse.bindfs'
+    opts: 'perms=a-w,mirror-only={{ item.user }}'
+    state: present
+  become: yes
+  register: bind_mount_res
+  tags: mounts-bind
+
+- name: Ensure bindfs mountpoint exists
+  file:
+    path: '{{ item.mountpoint }}'
+    state: 'directory'
+    mode: '0770'
+  become: yes
+  when: bind_mount_res.changed == True
+  tags: mounts-bind
+
+- name: Bind mount directory
+  command: 'bindfs --resolve-symlinks --perms=a-w --mirror-only={{ item.user }} {{ item.dir }} {{ item.mountpoint }}'
+  become: yes
+  when: bind_mount_res.changed == True
+  tags: mounts-bind
