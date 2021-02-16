@@ -4,4 +4,5 @@
     name: 'bindfs'
     state: 'latest'
   become: yes
+  when: bind_mounts | length > 0
   tags: mounts-requirements
