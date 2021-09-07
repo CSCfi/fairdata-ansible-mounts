@@ -2,7 +2,7 @@
 - name: Ensure Bindfs is installed
   yum:
     name: 'bindfs'
-    state: 'latest'
+    state: present
   become: yes
   when: bind_mounts | length > 0
   tags: mounts-requirements
